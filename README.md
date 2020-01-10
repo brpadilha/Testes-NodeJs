@@ -29,3 +29,37 @@ A prática de TDD é criar os testes antes de serem criados as funcionalidades, 
 # Jest
 
 Vai ser a ferramenta utilizada no bootcamp para testes. É um framework do facebook muito utilizado, ele consegue concentrar várias libs de testes em uma coisa só. E nele você consegue testar o backend, frontend e mobile. Suas vantagens é de ter integrado o `Code Coverage e a Mult-thread`.
+
+## Aula 02 - Configurando projeto
+
+Primeira coisa que devemos fazer é rodar o comando no terminal para instalar as dependencias de testes no computador:
+
+```
+yarn global add @rocketseat/omni
+```
+
+Depois de instalar, inicie o projeto na pasta que você quer fazer o projeto, ele ja inicia com react, react-native e nodejs, para isso vamos colocar `--only=server` no final, para que ele suporte somente o NodeJs:
+
+```
+omni init testes-NodeJs --only=server
+```
+
+Agora criamos um arquivo `.env` na raiz do projeto e copiamos o conteudo de `.env.example`para dentro dele:
+
+```
+APP_URL=http://localhost:3333
+NODE_ENV=development
+
+# Auth
+
+APP_SECRET=templatenoderocketseat
+
+# Database
+
+DB_HOST=localhost
+DB_USER=docker
+DB_PASS=docker
+DB_NAME=testes
+```
+
+Agora a gente vai no `App.js` e tira o comentario do database e no docker do postgres, criamos um database testes para testar esse nosso projeto.
