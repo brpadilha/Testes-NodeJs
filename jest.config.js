@@ -1,50 +1,3 @@
-# Testes NodeJs
-
-## Por que testar?
-
-Devemos testar para garantir que tudo vai funcionar na nossa aplicação, tanto em projetos pequenos ou grandes.
-
-## Tipos de Testes
-
-### Testes Unitários
-
-Testam uma função mínima pura, onde não tem efeito colateral de acessar banco de dados e não tem integrações externas, ele é muito utilizado para teste de funções.
-
-### Testes de integração
-
-São os principais testes do back-end, onde testam as funcionalidades completas, como acessar as rotas e retorno do controller.
-
-### Testes E2E
-
-São testes de interface que simula o acesso do usuário na aplicação, dele preenchendo campos, clicando em botões e retorna o que se espera que ele receba, como clicar em um botão e ir para o Dashboard por exemplo.
-
-## TDD
-
-A prática de TDD é criar os testes antes de serem criados as funcionalidades, onde você cria primeiro o teste e depois vai fazendo a funcionalidade para que o teste dê certo. Assim facilita a visualização da regra de negócio da aplicação.
-
-## Code Coverage
-
-É uma funcionalidade para verificar se testou o suficiente na sua aplicação, ele separa por % do que foi testado na sua aplicação, é bastante importante que no final, tenha testado mais de 80% da aplicação.
-
-# Jest
-
-Vai ser a ferramenta utilizada no bootcamp para testes. É um framework do facebook muito utilizado, ele consegue concentrar várias libs de testes em uma coisa só. E nele você consegue testar o backend, frontend e mobile. Suas vantagens é de ter integrado o `Code Coverage e a Mult-thread`.
-
-## Aula 03 - Configurando jest
-
-Primeiramente vamos instalar o framework jest do facebook, que tem todas as ferramentas precisas para realizar testes:
-
-```
-yarn add jest -D
-```
-
-Agora a gente roda o comando `yarn jest --init` para responder o questionário.
-
-Depois de responder, basicamente tudo yes e node para a segunda opção.
-
-Criamos uma pasta chamada `__tests__` na raiz do projeto e configuramos o jest .json ficando assim:
-
-```// For a detailed explanation regarding each configuration property, visit:
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
 
@@ -71,7 +24,7 @@ module.exports = {
   collectCoverageFrom: ['src/app/**/*.js'], // irá testar todos os arquivos .js dentro da pasta app.
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: 'coverage',
+  coverageDirectory: '__tests__/coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -227,57 +180,3 @@ module.exports = {
   // Whether to use watchman for file crawling
   // watchman: true,
 };
-
-```
-
-Agora vamos instalar uma biblioteca do sucrase jest para podermos usar o import export.
-
-```yarn add --dev @sucrase/jest-plugin
-
-```
-
-E dentro do jest.config, procuramos o `transform` e colocamos a configuração do jest q está na documentação [aqui][https://www.npmjs.com/package/@sucrase/jest-plugin]
-
-```
-"jest": {
-    "transform": {
-      ".(js|jsx|ts|tsx)": "@sucrase/jest-plugin"
-    },
-    ...
-  }
-```
-
-Agora dentro do `nodemon.json` vamos passar uma configuração ignore, para que não reinicie o servidor em desenvolvimento quando está sendo testado:
-
-```
-{
-  "execMap": {
-    "js": "sucrase-node"
-  },
-  "ignore": ["__tests__"]
-}
-```
-
-Agora vamos criar o nosso primeiro teste para testar a nossa configuração.
-
----
-
-Vamos instalar uma biblioteca de intelicense:
-
-`yarn add -D @types/jest`
-
-Primeiro a gente cria um arquivo chamado `example.test.js` dentro da pasta `__tests__` e podemos até rodar `yarn test` e vemos que irá rodar, mas não vai testar nada.
-
-Então vamos começar a escrever nosso teste.
-
-```
-function soma(a, b) {
-  return a + b;
-}
-
-test('if I call soma function with 4 and 5 it should return 9.', () => {
-  const result = soma(4, 5);
-
-  expect(result).toBe(9);
-});
-```
