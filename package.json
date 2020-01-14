@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@types/dotenv": "^8.2.0",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
@@ -28,6 +29,8 @@
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-prettier": "^3.1.0",
+    "factory-girl": "^5.0.4",
+    "faker": "^4.1.0",
     "handlebars": "4.5.0",
     "jest": "^24.9.0",
     "nodemon": "^1.19.1",
